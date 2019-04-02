@@ -1,0 +1,797 @@
+Step: build-step-credential-initializer:
+
+{"level":"warn","ts":1554163627.2979589,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554163627.2999573,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: build-step-git-source-0:
+
+{"level":"warn","ts":1554163628.0698452,"logger":"fallback-logger","caller":"logging/config.go:65","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/test\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1554163629.3465264,"logger":"fallback-logger","caller":"git-init/main.go:92","msg":"Successfully cloned \"https://github.com/oleg-glushak/overview.git\" @ \"23e4bf2c2d249bdc7cc225e9ff039d01b5be8406\" in path \"/workspace\""}
+Step: build-step-jenkins:
+
+Picked up _JAVA_OPTIONS: -Xmx400m
+Started
+Running in Durability level: PERFORMANCE_OPTIMIZED
+  21.771 [id=32]	WARNING	i.f.k.c.i.VersionUsageUtils#alert: The client is using resource type 'customresourcedefinitions' with unstable version 'v1beta1'
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI Build and push snapshot)
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t 10.59.253.29:5000/oleg-glushak/overview:0.0.0-SNAPSHOT-PR-33-1 .
+Sending build context to Docker daemon  1.186MB
+Step 1/11 : FROM ruby:2.4-stretch
+2.4-stretch: Pulling from library/ruby
+e79bb959ec00: Already exists
+d4b7902036fe: Already exists
+1b2a72d4e030: Already exists
+d54db43011fd: Already exists
+69d473365bb3: Already exists
+84ed2a0dc034: Already exists
+289f372afd0e: Already exists
+0b2791926dd5: Already exists
+Digest: sha256:ad6d9f12c31f239abe36dd8b44827e980073430e8b69dc2911f06d182e09689f
+Status: Downloaded newer image for ruby:2.4-stretch
+ ---> a14928bdfa34
+Step 2/11 : VOLUME /zattoo/overview/shared
+ ---> Running in d54f280d49c9
+ ---> 72d4aa926e4b
+Removing intermediate container d54f280d49c9
+Step 3/11 : RUN apt-get update &&     apt-get upgrade -y &&     apt-get install -y --force-yes build-essential curl git nano wget telnet zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev default-libmysqlclient-dev vim
+ ---> Running in 244039a4a4ea
+Get:1 http://security.debian.org/debian-security stretch/updates InRelease [94.3 kB]
+Ign:2 http://deb.debian.org/debian stretch InRelease
+Get:3 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:4 http://deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://deb.debian.org/debian stretch Release.gpg [2434 B]
+Get:6 http://security.debian.org/debian-security stretch/updates/main amd64 Packages [481 kB]
+Get:7 http://deb.debian.org/debian stretch-updates/main amd64 Packages [11.1 kB]
+Get:8 http://deb.debian.org/debian stretch/main amd64 Packages [7084 kB]
+Fetched 7881 kB in 1s (4502 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+The following packages will be upgraded:
+  tzdata
+1 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 273 kB of archives.
+After this operation, 2048 B of additional disk space will be used.
+Get:1 http://deb.debian.org/debian stretch-updates/main amd64 tzdata all 2019a-0+deb9u1 [273 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 273 kB in 0s (24.4 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29705 files and directories currently installed.)
+Preparing to unpack .../tzdata_2019a-0+deb9u1_all.deb ...
+Unpacking tzdata (2019a-0+deb9u1) over (2018i-0+deb9u1) ...
+Setting up tzdata (2019a-0+deb9u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Current default time zone: 'Etc/UTC'
+Local time is now:      Tue Apr  2 00:09:19 UTC 2019.
+Universal Time is now:  Tue Apr  2 00:09:19 UTC 2019.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (7.52.1-5+deb9u9).
+git is already the newest version (1:2.11.0-3+deb9u4).
+libxml2-dev is already the newest version (2.9.4+dfsg1-2.2+deb9u2).
+libxslt1-dev is already the newest version (1.1.29-2.1).
+libyaml-dev is already the newest version (0.1.7-2).
+default-libmysqlclient-dev is already the newest version (1.0.2).
+libssl-dev is already the newest version (1.1.0j-1~deb9u1).
+libreadline-dev is already the newest version (7.0-3).
+wget is already the newest version (1.18-5+deb9u2).
+zlib1g-dev is already the newest version (1:1.2.8.dfsg-5).
+Suggested packages:
+  debian-keyring gpm spell ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  build-essential dpkg-dev fakeroot libalgorithm-diff-perl
+  libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libgpm2 nano
+  telnet vim vim-common vim-runtime xxd
+0 upgraded, 14 newly installed, 0 to remove and 0 not upgraded.
+Need to get 9129 kB of archives.
+After this operation, 36.0 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian stretch/main amd64 nano amd64 2.7.4-1 [485 kB]
+Get:2 http://deb.debian.org/debian stretch/main amd64 xxd amd64 2:8.0.0197-4+deb9u1 [132 kB]
+Get:3 http://deb.debian.org/debian stretch/main amd64 vim-common all 2:8.0.0197-4+deb9u1 [159 kB]
+Get:4 http://deb.debian.org/debian stretch/main amd64 libgpm2 amd64 1.20.4-6.2+b1 [34.2 kB]
+Get:5 http://deb.debian.org/debian stretch/main amd64 telnet amd64 0.17-41 [72.0 kB]
+Get:6 http://deb.debian.org/debian stretch/main amd64 dpkg-dev all 1.18.25 [1595 kB]
+Get:7 http://deb.debian.org/debian stretch/main amd64 build-essential amd64 12.3 [7346 B]
+Get:8 http://deb.debian.org/debian stretch/main amd64 libfakeroot amd64 1.21-3.1 [45.7 kB]
+Get:9 http://deb.debian.org/debian stretch/main amd64 fakeroot amd64 1.21-3.1 [85.6 kB]
+Get:10 http://deb.debian.org/debian stretch/main amd64 libalgorithm-diff-perl all 1.19.03-1 [48.7 kB]
+Get:11 http://deb.debian.org/debian stretch/main amd64 libalgorithm-diff-xs-perl amd64 0.04-4+b2 [11.6 kB]
+Get:12 http://deb.debian.org/debian stretch/main amd64 libalgorithm-merge-perl all 0.08-3 [12.7 kB]
+Get:13 http://deb.debian.org/debian stretch/main amd64 vim-runtime all 2:8.0.0197-4+deb9u1 [5407 kB]
+Get:14 http://deb.debian.org/debian stretch/main amd64 vim amd64 2:8.0.0197-4+deb9u1 [1034 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 9129 kB in 0s (78.3 MB/s)
+Selecting previously unselected package nano.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29705 files and directories currently installed.)
+Preparing to unpack .../00-nano_2.7.4-1_amd64.deb ...
+Unpacking nano (2.7.4-1) ...
+Selecting previously unselected package xxd.
+Preparing to unpack .../01-xxd_2%3a8.0.0197-4+deb9u1_amd64.deb ...
+Unpacking xxd (2:8.0.0197-4+deb9u1) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../02-vim-common_2%3a8.0.0197-4+deb9u1_all.deb ...
+Unpacking vim-common (2:8.0.0197-4+deb9u1) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../03-libgpm2_1.20.4-6.2+b1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.4-6.2+b1) ...
+Selecting previously unselected package telnet.
+Preparing to unpack .../04-telnet_0.17-41_amd64.deb ...
+Unpacking telnet (0.17-41) ...
+Selecting previously unselected package dpkg-dev.
+Preparing to unpack .../05-dpkg-dev_1.18.25_all.deb ...
+Unpacking dpkg-dev (1.18.25) ...
+Selecting previously unselected package build-essential.
+Preparing to unpack .../06-build-essential_12.3_amd64.deb ...
+Unpacking build-essential (12.3) ...
+Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../07-libfakeroot_1.21-3.1_amd64.deb ...
+Unpacking libfakeroot:amd64 (1.21-3.1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../08-fakeroot_1.21-3.1_amd64.deb ...
+Unpacking fakeroot (1.21-3.1) ...
+Selecting previously unselected package libalgorithm-diff-perl.
+Preparing to unpack .../09-libalgorithm-diff-perl_1.19.03-1_all.deb ...
+Unpacking libalgorithm-diff-perl (1.19.03-1) ...
+Selecting previously unselected package libalgorithm-diff-xs-perl.
+Preparing to unpack .../10-libalgorithm-diff-xs-perl_0.04-4+b2_amd64.deb ...
+Unpacking libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Selecting previously unselected package libalgorithm-merge-perl.
+Preparing to unpack .../11-libalgorithm-merge-perl_0.08-3_all.deb ...
+Unpacking libalgorithm-merge-perl (0.08-3) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../12-vim-runtime_2%3a8.0.0197-4+deb9u1_all.deb ...
+Adding 'diversion of /usr/share/vim/vim80/doc/help.txt to /usr/share/vim/vim80/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim80/doc/tags to /usr/share/vim/vim80/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.0.0197-4+deb9u1) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../13-vim_2%3a8.0.0197-4+deb9u1_amd64.deb ...
+Unpacking vim (2:8.0.0197-4+deb9u1) ...
+Processing triggers for mime-support (3.60) ...
+Setting up xxd (2:8.0.0197-4+deb9u1) ...
+Setting up libgpm2:amd64 (1.20.4-6.2+b1) ...
+Setting up nano (2.7.4-1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Setting up dpkg-dev (1.18.25) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+Setting up telnet (0.17-41) ...
+update-alternatives: using /usr/bin/telnet.netkit to provide /usr/bin/telnet (telnet) in auto mode
+Setting up libfakeroot:amd64 (1.21-3.1) ...
+Setting up vim-common (2:8.0.0197-4+deb9u1) ...
+Setting up libalgorithm-diff-perl (1.19.03-1) ...
+Setting up vim-runtime (2:8.0.0197-4+deb9u1) ...
+Processing triggers for hicolor-icon-theme (0.15-1) ...
+Setting up build-essential (12.3) ...
+Setting up vim (2:8.0.0197-4+deb9u1) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+Setting up fakeroot (1.21-3.1) ...
+update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up libalgorithm-merge-perl (0.08-3) ...
+Setting up libalgorithm-diff-xs-perl (0.04-4+b2) ...
+Processing triggers for libc-bin (2.24-11+deb9u4) ...
+[91mW: --force-yes is deprecated, use one of the options starting with --allow instead.
+[0m ---> c50964da6e74
+Removing intermediate container 244039a4a4ea
+Step 4/11 : WORKDIR /tmp
+ ---> 607e7e0fd46e
+Removing intermediate container c367637f94c6
+Step 5/11 : COPY Gemfile Gemfile.lock ./
+ ---> 8e720cf87fc7
+Removing intermediate container d7cb03589295
+Step 6/11 : RUN bundle install --without development test &&     mkdir -p /zattoo/overview/current
+ ---> Running in a2da57eeb365
+Fetching gem metadata from https://rubygems.org/..........
+Fetching rake 12.3.1
+Installing rake 12.3.1
+Fetching RedCloth 4.3.2
+Installing RedCloth 4.3.2 with native extensions
+Fetching aasm 3.4.0
+Installing aasm 3.4.0
+Fetching concurrent-ruby 1.0.5
+Installing concurrent-ruby 1.0.5
+Fetching i18n 0.8.1
+Installing i18n 0.8.1
+Fetching minitest 5.10.1
+Installing minitest 5.10.1
+Fetching thread_safe 0.3.6
+Installing thread_safe 0.3.6
+Fetching tzinfo 1.2.3
+Installing tzinfo 1.2.3
+Fetching activesupport 5.0.2
+Installing activesupport 5.0.2
+Fetching builder 3.2.3
+Installing builder 3.2.3
+Fetching erubis 2.7.0
+Installing erubis 2.7.0
+Fetching mini_portile2 2.1.0
+Installing mini_portile2 2.1.0
+Fetching nokogiri 1.7.1
+Installing nokogiri 1.7.1 with native extensions
+Fetching rails-dom-testing 2.0.2
+Installing rails-dom-testing 2.0.2
+Fetching loofah 2.0.3
+Installing loofah 2.0.3
+Fetching rails-html-sanitizer 1.0.3
+Installing rails-html-sanitizer 1.0.3
+Fetching actionview 5.0.2
+Installing actionview 5.0.2
+Fetching rack 2.0.1
+Installing rack 2.0.1
+Fetching rack-test 0.6.3
+Installing rack-test 0.6.3
+Fetching actionpack 5.0.2
+Installing actionpack 5.0.2
+Fetching nio4r 2.0.0
+Installing nio4r 2.0.0 with native extensions
+Fetching websocket-extensions 0.1.2
+Installing websocket-extensions 0.1.2
+Fetching websocket-driver 0.6.5
+Installing websocket-driver 0.6.5 with native extensions
+Fetching actioncable 5.0.2
+Installing actioncable 5.0.2
+Fetching globalid 0.4.0
+Installing globalid 0.4.0
+Fetching activejob 5.0.2
+Installing activejob 5.0.2
+Fetching mime-types-data 3.2016.0521
+Installing mime-types-data 3.2016.0521
+Fetching mime-types 3.1
+Installing mime-types 3.1
+Fetching mail 2.6.5
+Installing mail 2.6.5
+Fetching actionmailer 5.0.2
+Installing actionmailer 5.0.2
+Fetching activemodel 5.0.2
+Installing activemodel 5.0.2
+Fetching arel 7.1.4
+Installing arel 7.1.4
+Fetching activerecord 5.0.2
+Installing activerecord 5.0.2
+Fetching acts-as-taggable-on 4.0.0
+Installing acts-as-taggable-on 4.0.0
+Fetching acts_as_tree 2.7.0
+Installing acts_as_tree 2.7.0
+Fetching net-ssh 5.0.1
+Installing net-ssh 5.0.1
+Fetching net-scp 1.2.1
+Installing net-scp 1.2.1
+Fetching sshkit 1.16.1
+Installing sshkit 1.16.1
+Fetching airbrussh 1.3.0
+Installing airbrussh 1.3.0
+Fetching execjs 2.7.0
+Installing execjs 2.7.0
+Fetching autoprefixer-rails 7.1.6
+Installing autoprefixer-rails 7.1.6
+Fetching bcrypt 3.1.11
+Installing bcrypt 3.1.11 with native extensions
+Fetching popper_js 1.12.5
+Installing popper_js 1.12.5
+Fetching rb-fsevent 0.9.8
+Installing rb-fsevent 0.9.8
+Fetching ffi 1.9.18
+Installing ffi 1.9.18 with native extensions
+Fetching rb-inotify 0.9.8
+Installing rb-inotify 0.9.8
+Fetching sass-listen 4.0.0
+Installing sass-listen 4.0.0
+Fetching sass 3.5.3
+Installing sass 3.5.3
+Fetching bootstrap 4.0.0.beta2.1
+Installing bootstrap 4.0.0.beta2.1
+Fetching method_source 0.8.2
+Installing method_source 0.8.2
+Fetching thor 0.19.4
+Installing thor 0.19.4
+Fetching railties 5.0.2
+Installing railties 5.0.2
+Fetching momentjs-rails 2.17.1
+Installing momentjs-rails 2.17.1
+Fetching bootstrap3-datetimepicker-rails 4.17.47
+Installing bootstrap3-datetimepicker-rails 4.17.47
+Using bundler 1.17.3
+Fetching capistrano 3.11.0
+Installing capistrano 3.11.0
+Fetching capistrano-bundler 1.3.0
+Installing capistrano-bundler 1.3.0
+Fetching capistrano-rails 1.4.0
+Installing capistrano-rails 1.4.0
+Fetching capistrano-rbenv 2.1.3
+Installing capistrano-rbenv 2.1.3
+Fetching capistrano3-unicorn 0.2.1
+Installing capistrano3-unicorn 0.2.1
+Fetching chronic 0.10.2
+Installing chronic 0.10.2
+Fetching coffee-script-source 1.12.2
+Installing coffee-script-source 1.12.2
+Fetching coffee-script 2.4.1
+Installing coffee-script 2.4.1
+Fetching coffee-rails 4.2.1
+Installing coffee-rails 4.2.1
+Fetching orm_adapter 0.5.0
+Installing orm_adapter 0.5.0
+Fetching responders 2.3.0
+Installing responders 2.3.0
+Fetching warden 1.2.7
+Installing warden 1.2.7
+Fetching devise 4.2.1
+Installing devise 4.2.1
+Fetching eventmachine 1.2.3
+Installing eventmachine 1.2.3 with native extensions
+Fetching multipart-post 2.0.0
+Installing multipart-post 2.0.0
+Fetching faraday 0.11.0
+Installing faraday 0.11.0
+Fetching faraday_middleware 0.11.0.1
+Installing faraday_middleware 0.11.0.1
+Fetching faye-websocket 0.10.7
+Installing faye-websocket 0.10.7
+Fetching font-awesome-rails 4.7.0.2
+Installing font-awesome-rails 4.7.0.2
+Fetching gli 2.16.0
+Installing gli 2.16.0
+Fetching temple 0.8.0
+Installing temple 0.8.0
+Fetching tilt 2.0.7
+Installing tilt 2.0.7
+Fetching haml 5.0.0
+Installing haml 5.0.0
+Fetching sprockets 3.7.1
+Installing sprockets 3.7.1
+Fetching haml_coffee_assets 1.17.0
+Installing haml_coffee_assets 1.17.0
+Fetching has_scope 0.7.1
+Installing has_scope 0.7.1
+Fetching hashie 3.5.5
+Installing hashie 3.5.5
+Fetching jquery-rails 4.3.1
+Installing jquery-rails 4.3.1
+Fetching json 2.1.0
+Installing json 2.1.0 with native extensions
+Fetching jwt 2.1.0
+Installing jwt 2.1.0
+Fetching kgio 2.11.2
+Installing kgio 2.11.2 with native extensions
+Fetching libv8 3.16.14.19 (x86_64-linux)
+Installing libv8 3.16.14.19 (x86_64-linux)
+Fetching multi_json 1.13.1
+Installing multi_json 1.13.1
+Fetching multi_xml 0.6.0
+Installing multi_xml 0.6.0
+Fetching mysql2 0.4.5
+Installing mysql2 0.4.5 with native extensions
+Fetching oauth2 1.4.1
+Installing oauth2 1.4.1
+Fetching omniauth 1.9.0
+Installing omniauth 1.9.0
+Fetching omniauth-oauth2 1.6.0
+Installing omniauth-oauth2 1.6.0
+Fetching omniauth-google-oauth2 0.6.0
+Installing omniauth-google-oauth2 0.6.0
+Fetching pundit 1.1.0
+Installing pundit 1.1.0
+Fetching sprockets-rails 3.2.0
+Installing sprockets-rails 3.2.0
+Fetching rails 5.0.2
+Installing rails 5.0.2
+Fetching raindrops 0.19.0
+Installing raindrops 0.19.0 with native extensions
+Fetching ref 2.0.0
+Installing ref 2.0.0
+Fetching rolify 5.1.0
+Installing rolify 5.1.0
+Fetching sass-rails 5.0.6
+Installing sass-rails 5.0.6
+Fetching select2-rails 4.0.3
+Installing select2-rails 4.0.3
+Fetching sentry-raven 2.7.2
+Installing sentry-raven 2.7.2
+Fetching settingslogic 2.0.9
+Installing settingslogic 2.0.9
+Fetching slack-ruby-client 0.8.1
+Installing slack-ruby-client 0.8.1
+Fetching therubyracer 0.12.3
+Installing therubyracer 0.12.3 with native extensions
+Fetching uglifier 3.2.0
+Installing uglifier 3.2.0
+Fetching unicorn 5.4.0
+Installing unicorn 5.4.0 with native extensions
+Fetching whenever 0.10.0
+Installing whenever 0.10.0
+Bundle complete! 41 Gemfile dependencies, 109 gems now installed.
+Gems in the groups development and test were not installed.
+Bundled gems are installed into `/usr/local/bundle`
+Post-install message from acts-as-taggable-on:
+When upgrading
+
+Re-run the migrations generator
+
+    rake acts_as_taggable_on_engine:install:migrations
+
+This will create any new migrations and skip existing ones
+Version 3.5.0 has a migration for mysql adapter
+ ---> 1fa0f2d38511
+Removing intermediate container a2da57eeb365
+Step 7/11 : WORKDIR /zattoo/overview/current
+ ---> 0a54d9f1d05c
+Removing intermediate container e1dd2476de93
+Step 8/11 : COPY . /zattoo/overview/current
+ ---> 75d437a541f1
+Removing intermediate container df6f044d36a5
+Step 9/11 : RUN bundle install --without development test &&   cp config/database.yml.example config/database.yml &&   cp config/secrets.yml.example config/secrets.yml &&   cp config/config.yml.example config/config.yml &&   RAILS_ENV=production rake assets:precompile &&   rm config/database.yml &&   rm config/secrets.yml &&   rm config/config.yml &&   mkdir -p /zattoo/overview/shared &&   ln -s /zattoo/overview/shared/config/database.yml /zattoo/overview/current/config/database.yml &&   ln -s /zattoo/overview/shared/config/secrets.yml /zattoo/overview/current/config/secrets.yml &&   ln -s /zattoo/overview/shared/config/config.yml /zattoo/overview/current/config/config.yml &&   rm -r /zattoo/overview/current/log &&   ln -nsf /zattoo/overview/shared/log /zattoo/overview/current/log &&   rm -r /zattoo/overview/current/tmp &&   ln -s /zattoo/overview/shared/tmp /zattoo/overview/current/tmp
+ ---> Running in 7ecd4bf96ea3
+Using rake 12.3.1
+Using RedCloth 4.3.2
+Using aasm 3.4.0
+Using concurrent-ruby 1.0.5
+Using i18n 0.8.1
+Using minitest 5.10.1
+Using thread_safe 0.3.6
+Using tzinfo 1.2.3
+Using activesupport 5.0.2
+Using builder 3.2.3
+Using erubis 2.7.0
+Using mini_portile2 2.1.0
+Using nokogiri 1.7.1
+Using rails-dom-testing 2.0.2
+Using loofah 2.0.3
+Using rails-html-sanitizer 1.0.3
+Using actionview 5.0.2
+Using rack 2.0.1
+Using rack-test 0.6.3
+Using actionpack 5.0.2
+Using nio4r 2.0.0
+Using websocket-extensions 0.1.2
+Using websocket-driver 0.6.5
+Using actioncable 5.0.2
+Using globalid 0.4.0
+Using activejob 5.0.2
+Using mime-types-data 3.2016.0521
+Using mime-types 3.1
+Using mail 2.6.5
+Using actionmailer 5.0.2
+Using activemodel 5.0.2
+Using arel 7.1.4
+Using activerecord 5.0.2
+Using acts-as-taggable-on 4.0.0
+Using acts_as_tree 2.7.0
+Using net-ssh 5.0.1
+Using net-scp 1.2.1
+Using sshkit 1.16.1
+Using airbrussh 1.3.0
+Using execjs 2.7.0
+Using autoprefixer-rails 7.1.6
+Using bcrypt 3.1.11
+Using popper_js 1.12.5
+Using rb-fsevent 0.9.8
+Using ffi 1.9.18
+Using rb-inotify 0.9.8
+Using sass-listen 4.0.0
+Using sass 3.5.3
+Using bootstrap 4.0.0.beta2.1
+Using method_source 0.8.2
+Using thor 0.19.4
+Using railties 5.0.2
+Using momentjs-rails 2.17.1
+Using bootstrap3-datetimepicker-rails 4.17.47
+Using bundler 1.17.3
+Using capistrano 3.11.0
+Using capistrano-bundler 1.3.0
+Using capistrano-rails 1.4.0
+Using capistrano-rbenv 2.1.3
+Using capistrano3-unicorn 0.2.1
+Using chronic 0.10.2
+Using coffee-script-source 1.12.2
+Using coffee-script 2.4.1
+Using coffee-rails 4.2.1
+Using orm_adapter 0.5.0
+Using responders 2.3.0
+Using warden 1.2.7
+Using devise 4.2.1
+Using eventmachine 1.2.3
+Using multipart-post 2.0.0
+Using faraday 0.11.0
+Using faraday_middleware 0.11.0.1
+Using faye-websocket 0.10.7
+Using font-awesome-rails 4.7.0.2
+Using gli 2.16.0
+Using temple 0.8.0
+Using tilt 2.0.7
+Using haml 5.0.0
+Using sprockets 3.7.1
+Using haml_coffee_assets 1.17.0
+Using has_scope 0.7.1
+Using hashie 3.5.5
+Using jquery-rails 4.3.1
+Using json 2.1.0
+Using jwt 2.1.0
+Using kgio 2.11.2
+Using libv8 3.16.14.19 (x86_64-linux)
+Using multi_json 1.13.1
+Using multi_xml 0.6.0
+Using mysql2 0.4.5
+Using oauth2 1.4.1
+Using omniauth 1.9.0
+Using omniauth-oauth2 1.6.0
+Using omniauth-google-oauth2 0.6.0
+Using pundit 1.1.0
+Using sprockets-rails 3.2.0
+Using rails 5.0.2
+Using raindrops 0.19.0
+Using ref 2.0.0
+Using rolify 5.1.0
+Using sass-rails 5.0.6
+Using select2-rails 4.0.3
+Using sentry-raven 2.7.2
+Using settingslogic 2.0.9
+Using slack-ruby-client 0.8.1
+Using therubyracer 0.12.3
+Using uglifier 3.2.0
+Using unicorn 5.4.0
+Using whenever 0.10.0
+Bundle complete! 41 Gemfile dependencies, 109 gems now installed.
+Gems in the groups development and test were not installed.
+Bundled gems are installed into `/usr/local/bundle`
+[91mI, [2019-04-02T00:12:13.239867 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/logos/missing_slack_image-e85153cbef1cf676d7d04983f954816bd4d92164057a940d75154ffca15d0db7.png
+[0m[91mI, [2019-04-02T00:12:13.244118 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/logos/zattoo_logo_neg_214_60-9df8c77a821989774046b57d7ef8f777d461e05f9f7644d6d5395abb58cbb423.png
+[0m[91mI, [2019-04-02T00:12:13.246767 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/logos/zattoo_rgb_pos-04d1a526a03da78bd515e465c0e597af666b3c4690cb810d1d85de16af715ae2.png
+[0m[91mI, [2019-04-02T00:12:19.381182 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/application-86edcb43f24c78a67cad5db211e44fa5b2e502a20f45bcf633d328ec38c9e312.js
+[0m[91mI, [2019-04-02T00:12:19.381683 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/application-86edcb43f24c78a67cad5db211e44fa5b2e502a20f45bcf633d328ec38c9e312.js.gz
+[0m[91mI, [2019-04-02T00:12:26.612936 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/application-432212ea8aeea97225a6c1f9186eb730eae90089e88022c10399aba8e76ba2de.css
+[0m[91mI, [2019-04-02T00:12:26.613926 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/application-432212ea8aeea97225a6c1f9186eb730eae90089e88022c10399aba8e76ba2de.css.gz
+[0m[91mI, [2019-04-02T00:12:26.614716 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-7bfcab6db99d5cfbf1705ca0536ddc78585432cc5fa41bbd7ad0f009033b2979.eot
+[0m[91mI, [2019-04-02T00:12:26.621492 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-7bfcab6db99d5cfbf1705ca0536ddc78585432cc5fa41bbd7ad0f009033b2979.eot.gz
+I, [2019-04-02T00:12:26.622008 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-2adefcbc041e7d18fcf2d417879dc5a09997aa64d675b7a3c4b6ce33da13f3fe.woff2
+I, [2019-04-02T00:12:26.623113 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-ba0c59deb5450f5cb41b3f93609ee2d0d995415877ddfa223e8a8a7533474f07.woff
+I, [2019-04-02T00:12:26.624018 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-aa58f33f239a0fb02f5c7a6c45c043d7a9ac9a093335806694ecd6d4edc0d6a8.ttf
+I, [2019-04-02T00:12:26.625024 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-aa58f33f239a0fb02f5c7a6c45c043d7a9ac9a093335806694ecd6d4edc0d6a8.ttf.gz
+I, [2019-04-02T00:12:26.625406 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-ad6157926c1622ba4e1d03d478f1541368524bfc46f51e42fe0d945f7ef323e4.svg
+[0m[91mI, [2019-04-02T00:12:26.633670 #11]  INFO -- : Writing /zattoo/overview/current/public/assets/fontawesome-webfont-ad6157926c1622ba4e1d03d478f1541368524bfc46f51e42fe0d945f7ef323e4.svg.gz
+[0m ---> 7fc0f51134d8
+Removing intermediate container 7ecd4bf96ea3
+Step 10/11 : EXPOSE 8080
+ ---> Running in 4cc02510adaa
+ ---> 7c4cda3088d5
+Removing intermediate container 4cc02510adaa
+Step 11/11 : CMD bundle exec unicorn -r ./sync.rb -c config/unicorn.rb
+ ---> Running in 47db7ea035c8
+ ---> 9f86432ba8d8
+Removing intermediate container 47db7ea035c8
+Successfully built 9f86432ba8d8
+[Pipeline] sh
++ docker push 10.59.253.29:5000/oleg-glushak/overview:0.0.0-SNAPSHOT-PR-33-1
+The push refers to a repository [10.59.253.29:5000/oleg-glushak/overview]
+b76079fc8a99: Preparing
+a36029fc6c61: Preparing
+06fa7be64eb9: Preparing
+e8018729c5fb: Preparing
+25fa21971a67: Preparing
+0e2752d2846e: Preparing
+4170ba949686: Preparing
+d43f42c485cd: Preparing
+0fe19df8b8f8: Preparing
+b17cc31e431b: Preparing
+12cb127eee44: Preparing
+604829a174eb: Preparing
+fbb641a8b943: Preparing
+0e2752d2846e: Waiting
+4170ba949686: Waiting
+d43f42c485cd: Waiting
+0fe19df8b8f8: Waiting
+b17cc31e431b: Waiting
+12cb127eee44: Waiting
+604829a174eb: Waiting
+fbb641a8b943: Waiting
+e8018729c5fb: Pushed
+0e2752d2846e: Layer already exists
+4170ba949686: Layer already exists
+d43f42c485cd: Layer already exists
+0fe19df8b8f8: Layer already exists
+b17cc31e431b: Layer already exists
+12cb127eee44: Layer already exists
+b76079fc8a99: Pushed
+604829a174eb: Layer already exists
+fbb641a8b943: Layer already exists
+a36029fc6c61: Pushed
+25fa21971a67: Pushed
+06fa7be64eb9: Pushed
+0.0.0-SNAPSHOT-PR-33-1: digest: sha256:75b460a027a3782da37738b1327f545a963b986384031350800035d38e89c948 size: 3057
+[Pipeline] sh
++ jx step post build --image 10.59.253.29:5000/oleg-glushak/overview:0.0.0-SNAPSHOT-PR-33-1
+[Pipeline] dir
+Running in /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/charts/preview
+[Pipeline] {
+[Pipeline] sh
++ make preview
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-33-1/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-33-1/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: 10.59.253.29:5000\/oleg-glushak\/overview|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-33-1/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-33-1" >> requirements.yaml
+jx step helm build
+No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: jenkins-x http://chartmuseum.jenkins-x.io
+Successfully added Helm repository jenkins-x.
+Adding missing Helm repo: releases http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository releases.
+[Pipeline] sh
++ kubectl get namespace overview-pr-33
+Error from server (NotFound): namespaces "overview-pr-33" not found
++ kubectl create namespace overview-pr-33
+namespace/overview-pr-33 created
+[Pipeline] sh
++ kubectl apply --namespace=overview-pr-33 -f -
++ kubectl get secret cloudsql-db-credentials --namespace=overview-secrets --export -o yaml
+Flag --export has been deprecated, This flag is deprecated and will be removed in future.
+secret/cloudsql-db-credentials created
+[Pipeline] sh
++ kubectl apply --namespace=overview-pr-33 -f -
++ kubectl get secret overview-secrets --namespace=overview-secrets --export -o yaml
+Flag --export has been deprecated, This flag is deprecated and will be removed in future.
+secret/overview-secrets created
+[Pipeline] sh
++ kubectl get secret cloudsql-instance-credentials --namespace=overview-secrets --export -o yaml
++ kubectl apply --namespace=overview-pr-33 -f -
+Flag --export has been deprecated, This flag is deprecated and will be removed in future.
+secret/cloudsql-instance-credentials created
+[Pipeline] sh
++ jx preview --app overview --namespace=overview-pr-33 --dir ../..
+Creating a preview
+Commit author email is empty for: 1a59fd5c6b013524612fdcfb211c7b1b1c840f0e
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 1a59fd5c6b013524612fdcfb211c7b1b1c840f0e
+Commit author email is empty for: c7e6966423e030892612568f121ec6332acfd7a9
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: c7e6966423e030892612568f121ec6332acfd7a9
+Commit author email is empty for: 2af95256cdbdd517b8ac340704c06bf4d2a4406c
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 2af95256cdbdd517b8ac340704c06bf4d2a4406c
+Commit author email is empty for: 1f4c64ecac97e34f32ca6f48bc653b004f7dbe23
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 1f4c64ecac97e34f32ca6f48bc653b004f7dbe23
+Commit author email is empty for: 99610bbe693b2ce98a044c07e9f0825db3bd46a8
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 99610bbe693b2ce98a044c07e9f0825db3bd46a8
+Commit author email is empty for: 28b8bec7050fd65e2c65c85ba2eb95d41e592ef1
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 28b8bec7050fd65e2c65c85ba2eb95d41e592ef1
+Commit author email is empty for: 3b2a37890b983db7b57e6ae72d32021b3386d9a2
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 3b2a37890b983db7b57e6ae72d32021b3386d9a2
+Commit author email is empty for: 946726404b4a622f663bdaa7bb75b8e3444ff82d
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 946726404b4a622f663bdaa7bb75b8e3444ff82d
+Commit author email is empty for: c15ef29fee1db10b8ac7b4e737510860b6d94232
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: c15ef29fee1db10b8ac7b4e737510860b6d94232
+Commit author email is empty for: e28399ace56f306d87bb8703f51c13c3c292b7b1
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: e28399ace56f306d87bb8703f51c13c3c292b7b1
+Commit author email is empty for: 7eabd24b1c08b55ed8318aba6fec1c6831d860c3
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 7eabd24b1c08b55ed8318aba6fec1c6831d860c3
+Commit author email is empty for: 64e0989a3e5326644aafcd659500776e356c76a5
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 64e0989a3e5326644aafcd659500776e356c76a5
+Commit author email is empty for: f0c5f24ab4228ba6c361f8f759d1fd69d788144f
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: f0c5f24ab4228ba6c361f8f759d1fd69d788144f
+Commit author email is empty for: e07838c9ae1679b1a8e26ff9e8c29af67d404e34
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: e07838c9ae1679b1a8e26ff9e8c29af67d404e34
+Commit author email is empty for: 9ab476faac8e04881e7a4d5f0f4381cbb82aaea1
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 9ab476faac8e04881e7a4d5f0f4381cbb82aaea1
+Commit author email is empty for: 08050c7a23cf96e1cd8a531ca3ac29da01ea1db5
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 08050c7a23cf96e1cd8a531ca3ac29da01ea1db5
+Commit author email is empty for: daf4d0f2339f030ba1497f30a6e918b371bf12c1
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: daf4d0f2339f030ba1497f30a6e918b371bf12c1
+Commit author email is empty for: 1bac1dd2dc2e375652c3331910dfce5eefd075da
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 1bac1dd2dc2e375652c3331910dfce5eefd075da
+Commit author email is empty for: b2c9e32daeb9764daf4ca8bfd499cb2e24ad1d4d
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: b2c9e32daeb9764daf4ca8bfd499cb2e24ad1d4d
+Commit author email is empty for: 9530142627a28322574d202896f81f3e29ef3a49
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 9530142627a28322574d202896f81f3e29ef3a49
+Commit author email is empty for: 265ff763b28a14538c73ec6d3dad60c23173b07a
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 265ff763b28a14538c73ec6d3dad60c23173b07a
+Commit author email is empty for: d5f98ebbd9e346fbc2fbf2af71ba3e6601b4e07e
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: d5f98ebbd9e346fbc2fbf2af71ba3e6601b4e07e
+Commit author email is empty for: 68e964dbc403534d46d40663a575cacc194939cb
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 68e964dbc403534d46d40663a575cacc194939cb
+Commit author email is empty for: 3081d089133b31213bb9a06f1857f5cc3166234a
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 3081d089133b31213bb9a06f1857f5cc3166234a
+Commit author email is empty for: e03d40ee987175424cced446d962ca870cf9b104
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: e03d40ee987175424cced446d962ca870cf9b104
+Commit author email is empty for: c02dfd366393cce75df63e84d286a989b6b14aee
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: c02dfd366393cce75df63e84d286a989b6b14aee
+Commit author email is empty for: ebc552c2b6707452131552b430d28c4348dd2257
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: ebc552c2b6707452131552b430d28c4348dd2257
+Commit author email is empty for: 37e4be8d184c717448ffa73d6ccb258b7d486b68
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 37e4be8d184c717448ffa73d6ccb258b7d486b68
+Commit author email is empty for: 8799f3ac4981c010fdf9ab87bc2205cc4b1f6729
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 8799f3ac4981c010fdf9ab87bc2205cc4b1f6729
+Commit author email is empty for: 3d6a99f0484f2140490c49a9390986c547ba1aa1
+Looking for commits in: /tmp/jenkinsTests.tmp/jenkins2041315698624030539test/workspace/job/
+Commit not found: 3d6a99f0484f2140490c49a9390986c547ba1aa1
+Created environment oleg-glushak-overview-pr-33
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 35.246.205.5.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: 10.59.253.29:5000/oleg-glushak/overview
+    tag: 0.0.0-SNAPSHOT-PR-33-1
+Failed to update PipelineActivities oleg-glushak-overview-pr-33-1: the namespace of the object (overview-pr-33) does not match the namespace on the request (jx)
+Preview application is now available at: http://overview.overview-pr-33.35.246.205.5.nip.io
+
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Release)
+Stage "Build Release" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+Stage "Promote to Environments" skipped due to when conditional
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
